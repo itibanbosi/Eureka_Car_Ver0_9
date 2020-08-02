@@ -7,6 +7,13 @@ enum whiteblack{
 白,
 }
 
+enum sence_select{
+    普通,
+    高感度,
+    低感度,
+    超低感度,
+}
+
 let con_le = 0;
 let con_op = 0;
 
@@ -172,8 +179,12 @@ namespace eureka_blocks_car {
   }
 
 //% color="#6041f1"  weight=23 block="右だけが |%wb| をふんだ　しきい値 |%sence| " group="3　センサー" group="4　センサー"
-//% sence.min=10 sence.max=40 sence=20
-  export function photo_R_out( wb: whiteblack , sence : number): boolean {
+//% sence.min=10 sence.max=40
+  export function photo_R_out( wb: whiteblack , sence : sence_select): boolean {
+      if (sence == sence_select.普通) {
+      sence=20    
+      }
+
     switch(wb){
         case whiteblack.黒:
             if ((pins.analogReadPin(AnalogPin.P1) / 1023) * 100 > sence && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 < sence) {
