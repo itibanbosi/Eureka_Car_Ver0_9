@@ -173,7 +173,7 @@ namespace eureka_blocks_car {
 
 //% color="#6041f1"  weight=23 block="右だけが |%wb| をふんだ　しきい値 |%sence| " group="3　センサー" group="4　センサー"
 //% sence.min=10 sence.max=40
-  export function photo_R_out( sence : number,  wb: whiteblack): boolean {
+  export function photo_R_out( wb: whiteblack , sence : number): boolean {
     switch(wb){
         case whiteblack.黒:
             if ((pins.analogReadPin(AnalogPin.P1) / 1023) * 100 > sence && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 < sence) {
@@ -192,7 +192,7 @@ namespace eureka_blocks_car {
 
   //% color="#6041f1"  weight=24 block="左だけが |%wb| をふんだ　しきい値 |%sence| " group="3　センサー" group="4　センサー"
 //% sence.min=10 sence.max=40
-  export function photo_L_out( sence : number, wb: whiteblack ): boolean {
+  export function photo_L_out( wb: whiteblack ,sence : number): boolean {
     switch(wb){
         case whiteblack.黒:
             if (
@@ -215,7 +215,7 @@ namespace eureka_blocks_car {
   }
   //% color="#6041f1"  weight=25 block="左右とも |%wb| 線をふんでいる　しきい値 |%sence|" group="4　センサー"
 //% sence.min=10 sence.max=40
-  export function photo_LR_out( sence : number, wb: whiteblack): boolean {
+  export function photo_LR_out(wb: whiteblack , sence : number): boolean {
     switch(wb){
         case whiteblack.黒:
             if (
