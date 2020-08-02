@@ -58,7 +58,7 @@ namespace eureka_blocks_car {
   }
 
   //% color="#3943c6" weight=71　blockId=servos_direction
-  //% block="進行方向 |houkou| " group="3　基本の動き"
+  //% block="進行方向 |%houkou| " group="3　基本の動き"
   export function car_derection(houkou:direction): void {
     switch(houkou){
         case direction.前:
