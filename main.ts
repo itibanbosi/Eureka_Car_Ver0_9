@@ -178,11 +178,20 @@ namespace eureka_blocks_car {
     }
   }
 
-//% color="#6041f1"  weight=23 block="右だけが |%wb| をふんだ　しきい値 |%sence| " group="3　センサー" group="4　センサー"
+//% color="#6041f1"  weight=23 block="右だけが |%wb| をふんだ時　　感度 |%sence| " group="3　センサー" group="4　センサー"
 //% sence.min=10 sence.max=40
   export function photo_R_out( wb: whiteblack , sence : sence_select): boolean {
+      if (sence == sence_select.高感度) {
+      sence=10    
+      }
       if (sence == sence_select.普通) {
       sence=20    
+      }
+      if (sence == sence_select.低感度) {
+      sence=30    
+      }
+      if (sence == sence_select.超低感度) {
+      sence=40    
       }
 
     switch(wb){
@@ -201,9 +210,21 @@ namespace eureka_blocks_car {
     }
   }
 
-  //% color="#6041f1"  weight=24 block="左だけが |%wb| をふんだ　しきい値 |%sence| " group="3　センサー" group="4　センサー"
-//% sence.min=10 sence.max=40
-  export function photo_L_out( wb: whiteblack ,sence : number): boolean {
+  //% color="#6041f1"  weight=24 block="左だけが |%wb| をふんだ時　しきい値 |%sence| " group="3　センサー" group="4　センサー"
+  export function photo_L_out( wb: whiteblack ,sence : sence_select): boolean {
+      if (sence == sence_select.高感度) {
+      sence=10    
+      }
+      if (sence == sence_select.普通) {
+      sence=20    
+      }
+      if (sence == sence_select.低感度) {
+      sence=30    
+      }
+      if (sence == sence_select.超低感度) {
+      sence=40    
+      }
+
     switch(wb){
         case whiteblack.黒:
             if (
@@ -224,9 +245,21 @@ namespace eureka_blocks_car {
     
     }
   }
-  //% color="#6041f1"  weight=25 block="左右とも |%wb| 線をふんでいる　しきい値 |%sence|" group="4　センサー"
+  //% color="#6041f1"  weight=25 block="左右とも |%wb| 線をふんでいる時　しきい値 |%sence|" group="4　センサー"
 //% sence.min=10 sence.max=40
-  export function photo_LR_out(wb: whiteblack , sence : number): boolean {
+  export function photo_LR_out(wb: whiteblack , sence : sence_select): boolean {
+      if (sence == sence_select.高感度) {
+      sence=10    
+      }
+      if (sence == sence_select.普通) {
+      sence=20    
+      }
+      if (sence == sence_select.低感度) {
+      sence=30    
+      }
+      if (sence == sence_select.超低感度) {
+      sence=40    
+      }
     switch(wb){
         case whiteblack.黒:
             if (
