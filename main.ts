@@ -172,7 +172,7 @@ namespace eureka_blocks_car {
   }
 
 //% color="#6041f1"  weight=23 block="右だけが |%wb| をふんだ　しきい値 |%sence| " group="3　センサー" group="4　センサー"
-//% sence.min=10 sence.max=40
+//% sence.min=10 sence.max=40 sence=20
   export function photo_R_out( wb: whiteblack , sence : number): boolean {
     switch(wb){
         case whiteblack.黒:
