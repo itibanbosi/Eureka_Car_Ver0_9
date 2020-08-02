@@ -1,0 +1,22 @@
+{
+    "name": "eureka-blocks",
+    "version": "0.0.83",
+    "description": "A MakeCode package to use sonar sensors",
+    "license": "MIT",
+    "dependencies": {
+        "core": "*"
+    },
+    "files": [
+        "README.md",
+        "main.ts",
+        "ds18b20.cpp"
+    ],
+    "testFiles": [
+        "test.ts"
+    ],
+    "public": true,
+    "supportedTargets": [
+        "microbit"
+    ],
+    "preferredEditor": "tsprj"
+}
