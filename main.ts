@@ -14,6 +14,22 @@ enum sence_select{
     超低感度,
 }
 
+enum direction{
+    前,
+    後,
+    右,
+    左,
+    右前,
+    左前,
+    停まる,
+    ニュートラル,
+}
+
+enum lotation{
+    左,
+    右,
+}
+
 let con_le = 0;
 let con_op = 0;
 
@@ -41,8 +57,51 @@ namespace eureka_blocks_car {
     con_op = op;
   }
 
+  //% color="#3943c6" weight=71　blockId=servos_direction
+  //% block="進行方向 |houkou| " group="3　基本の動き"
+  export function car_derection(houkou:direction): void {
+    switch(houkou){
+        case direction.前:
+            if (con_le >= 0) {
+            pins.servoWritePin(AnalogPin.P14,90 - (90 * (con_op + 100)) / 100 + con_le);
+            pins.servoWritePin(AnalogPin.P13, 90 + (90 * (con_op + 100)) / 100);
+            }
+            if (con_le < 0) {
+            pins.servoWritePin(AnalogPin.P14, 90 - (90 * (con_op + 100)) / 100);
+            pins.servoWritePin(AnalogPin.P13, 90 + (90 * (con_op + 100)) / 100 + con_le);
+            }        
+        case direction.後:
+            if (con_le >= 0) {
+            pins.servoWritePin( AnalogPin.P14,90 + (90 * (con_op + 100)) / 100 - con_le );
+            pins.servoWritePin(AnalogPin.P13, 90 - (90 * (con_op + 100)) / 100);
+            }
+            if (con_le < 0) {
+            pins.servoWritePin(AnalogPin.P14, 90 + (90 * (con_op + 100)) / 100);
+            pins.servoWritePin(AnalogPin.P13, 90 - (90 * (con_op + 100)) / 100 - con_le );
+            }
+        case direction.左:
+            pins.servoWritePin(AnalogPin.P14,90 - (90 * (con_op + 100)) / 100 );
+            pins.servoWritePin(AnalogPin.P13, 90 );
+        case direction.右:
+            pins.servoWritePin(AnalogPin.P14,90 );
+            pins.servoWritePin(AnalogPin.P13, 90 + (90 * (con_op + 100)) / 100 );
+        case direction.左前:
+            pins.servoWritePin(AnalogPin.P14,60 );
+            pins.servoWritePin(AnalogPin.P13, 100);
+        case direction.右前:
+            pins.servoWritePin(AnalogPin.P14,80);
+            pins.servoWritePin(AnalogPin.P13, 120);
+        case direction.停まる:
+            pins.servoWritePin(AnalogPin.P13, 90);
+            pins.servoWritePin(AnalogPin.P14, 90);
+        case direction.ニュートラル:
+            pins.digitalWritePin(DigitalPin.P13, 0);
+            pins.digitalWritePin(DigitalPin.P14, 0);
+    }
+  }    
+
   //% color="#3943c6" weight=70　blockId=servos_forward
-  //% block="前 " group="3　基本の動き"
+  //% block="前" group="3　基本の動き"
   export function forward(): void {
     if (con_le >= 0) {
       pins.servoWritePin(AnalogPin.P14,90 - (90 * (con_op + 100)) / 100 + con_le);
@@ -84,19 +143,17 @@ namespace eureka_blocks_car {
   //% color="#3943c6" weight=65 blockId=servos_forward_right
   //% block="ななめ右前" group="3　基本の動き"
   export function forward_right(): void {
-    if (con_le >= 0) {
       pins.servoWritePin(AnalogPin.P14,80);
       pins.servoWritePin(AnalogPin.P13, 120);
-    }
+    
   }
 
       //% color="#3943c6" weight=64 blockId=servos_forward_left
   //% block="ななめ左前" group="3　基本の動き"
   export function forward_left(): void {
-    if (con_le >= 0) {
       pins.servoWritePin(AnalogPin.P14,60 );
       pins.servoWritePin(AnalogPin.P13, 100);
-    }
+    
   }
 
   //% color="#3943c6" weight=61 blockId=servos_stop
