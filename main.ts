@@ -112,30 +112,25 @@ namespace eureka_blocks_car {
     }
   }
 
-  //% color="#3943c6" weight=59　blockId=servo_pro_lr
+  //% color="#3943c6" weight=59　blockId=servo_pro_bal
   //% block="前進バランス 左へ |%set_lr| 右へ" group="3　基本の動き"
   //% set_lr.min=-90 set_lr.max=90
-  export function pro_lr(set_lr: number): void {
+  export function pro_bal(set_lr: number): void {
       pins.servoWritePin(AnalogPin.P14,90 - (90 * (con_op + 100)) / 100 );
       pins.servoWritePin(AnalogPin.P13, 90 + (90 * (con_op + 100)) / 100);
     }
 
-  //% color="#3943c6" weight=58　blockId=servo_pro_l
-  //% block="左車輪 出力 |%set_l| " group="3　基本の動き"
-  //% set_l.min=-100 set_l.max=100
-  export function pro_l(set_l: number): void {
-    pins.servoWritePin(AnalogPin.P13, 90 + (90 * set_l) / 100);
+  //% color="#3943c6" weight=58　blockId=servo_pro_LR
+  //% block="|lot_houkou| 車輪 出力 |%set_LR| " group="3　基本の動き"
+  //% set_LR.min=-100 set_LR.max=100
+  export function pro_LR(lot_houkou:lotation, set_LR: number): void {
+    switch(lot_houkou){
+        case lotation.左:
+            pins.servoWritePin(AnalogPin.P13, 90 + (90 * set_LR) / 100);
+        case lotation.右:
+    pins.servoWritePin(AnalogPin.P14, 90 - (90 * set_LR) / 100);
+    }
   }
-
-  //% color="#3943c6" weight=56　blockId=servo_pro_r
-  //% block="右車輪 出力 |%set_r| " group="3　基本の動き"
-  //% set_r.min=-100 set_r.max=100
-  export function pro_r(set_r: number): void {
-    pins.servoWritePin(AnalogPin.P14, 90 - (90 * set_r) / 100);
-  }
-
-
-
   //% color="#f071bd" weight=30 blockId=auto_photo_R block="右ﾌｫﾄﾘﾌﾚｸﾀｰ" group="4　センサー"
   export function phto_R() {
     return Math.round((pins.analogReadPin(AnalogPin.P2) / 1023) * 100);
