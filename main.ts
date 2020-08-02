@@ -171,7 +171,7 @@ namespace eureka_blocks_car {
     }
   }
 
-//% color="#6041f1"  weight=23 block="右だけが |%wb| をふんだ　しきい値 |sence| " group="3　センサー" group="4　センサー"
+//% color="#6041f1"  weight=23 block="右だけが |%wb| をふんだ　しきい値 |%sence| " group="3　センサー" group="4　センサー"
 //% sence.min=10 sence.max=40
   export function photo_R_out( sence : number,  wb: whiteblack): boolean {
     switch(wb){
@@ -190,7 +190,7 @@ namespace eureka_blocks_car {
     }
   }
 
-  //% color="#6041f1"  weight=24 block="左だけが |%wb| をふんだ　しきい値 |sence| " group="3　センサー" group="4　センサー"
+  //% color="#6041f1"  weight=24 block="左だけが |%wb| をふんだ　しきい値 |%sence| " group="3　センサー" group="4　センサー"
 //% sence.min=10 sence.max=40
   export function photo_L_out( sence : number, wb: whiteblack ): boolean {
     switch(wb){
@@ -213,7 +213,7 @@ namespace eureka_blocks_car {
     
     }
   }
-  //% color="#6041f1"  weight=25 block="左右とも |%wb| 線をふんでいる　しきい値 |sence|" group="4　センサー"
+  //% color="#6041f1"  weight=25 block="左右とも |%wb| 線をふんでいる　しきい値 |%sence|" group="4　センサー"
 //% sence.min=10 sence.max=40
   export function photo_LR_out( sence : number, wb: whiteblack): boolean {
     switch(wb){
