@@ -7,8 +7,6 @@ enum whiteblack{
 白,
 }
 
-
-
 let con_le = 0;
 let con_op = 0;
 
@@ -173,17 +171,18 @@ namespace eureka_blocks_car {
     }
   }
 
-  //% color="#6041f1"  weight=23 block="右が |%wb| をふんだ" group="3　センサー" group="4　センサー"
-  export function photo_R_out( wb: whiteblack): boolean {
+//% color="#6041f1"  weight=23 block="右だけが |%wb| をふんだ　しきい値 |sence| " group="3　センサー" group="4　センサー"
+//% sence.min=10 sence.max=40
+  export function photo_R_out( sence : number,  wb: whiteblack): boolean {
     switch(wb){
         case whiteblack.黒:
-            if ((pins.analogReadPin(AnalogPin.P1) / 1023) * 100 > 20 && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 < 20) {
+            if ((pins.analogReadPin(AnalogPin.P1) / 1023) * 100 > sence && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 < sence) {
             return true;
             } else {
             return false;
             }
         case whiteblack.白:
-            if ((pins.analogReadPin(AnalogPin.P1) / 1023) * 100 < 20 && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 > 20) {
+            if ((pins.analogReadPin(AnalogPin.P1) / 1023) * 100 < sence && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 > sence) {
             return true;
             } else {
             return false;
@@ -191,13 +190,14 @@ namespace eureka_blocks_car {
     }
   }
 
-  //% color="#6041f1"  weight=24 block="左が |%wb| をふんだ" group="3　センサー" group="4　センサー"
-  export function photo_L_out( wb: whiteblack ): boolean {
+  //% color="#6041f1"  weight=24 block="左だけが |%wb| をふんだ　しきい値 |sence| " group="3　センサー" group="4　センサー"
+//% sence.min=10 sence.max=40
+  export function photo_L_out( sence : number, wb: whiteblack ): boolean {
     switch(wb){
         case whiteblack.黒:
             if (
             
-            (pins.analogReadPin(AnalogPin.P1) / 1023) * 100 < 20 　&&　(pins.analogReadPin(AnalogPin.P2) / 1023) * 100 > 20
+            (pins.analogReadPin(AnalogPin.P1) / 1023) * 100 < sence 　&&　(pins.analogReadPin(AnalogPin.P2) / 1023) * 100 > sence
                 ) {
             return true;
             } else {
@@ -205,7 +205,7 @@ namespace eureka_blocks_car {
             }
 
         case whiteblack.白:
-            if ((pins.analogReadPin(AnalogPin.P1) / 1023) * 100 > 20 &&　(pins.analogReadPin(AnalogPin.P2) / 1023) * 100 < 20) {
+            if ((pins.analogReadPin(AnalogPin.P1) / 1023) * 100 > sence &&　(pins.analogReadPin(AnalogPin.P2) / 1023) * 100 < sence) {
             return true;
             } else {
             return false;
@@ -213,12 +213,13 @@ namespace eureka_blocks_car {
     
     }
   }
-  //% color="#6041f1"  weight=25 block="左右とも |%wb| 線をふんでいる" group="4　センサー"
-  export function photo_LR_out(wb: whiteblack): boolean {
+  //% color="#6041f1"  weight=25 block="左右とも |%wb| 線をふんでいる　しきい値 |sence|" group="4　センサー"
+//% sence.min=10 sence.max=40
+  export function photo_LR_out( sence : number, wb: whiteblack): boolean {
     switch(wb){
         case whiteblack.黒:
             if (
-            (pins.analogReadPin(AnalogPin.P1) / 1023) * 100 > 20 && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 > 20)
+            (pins.analogReadPin(AnalogPin.P1) / 1023) * 100 > sence && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 > sence)
              {
             return true;
             } else {
@@ -228,7 +229,7 @@ namespace eureka_blocks_car {
     switch(wb){
         case whiteblack.白:
             if (
-            (pins.analogReadPin(AnalogPin.P1) / 1023) * 100 < 20 && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 < 20)
+            (pins.analogReadPin(AnalogPin.P1) / 1023) * 100 < sence && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 < sence)
              {
             return true;
             } else {
