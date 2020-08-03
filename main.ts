@@ -263,6 +263,15 @@ namespace eureka_blocks_car {
       }
     switch(wb){
         case whiteblack.黒:
+      if (sence == sence_select.高感度) {
+      sence=10    
+      }
+      if (sence == sence_select.普通) {
+      sence=20    
+      }
+      if (sence == sence_select.低感度) {
+      sence=30    
+      }
             if (
             (pins.analogReadPin(AnalogPin.P1) / 1023) * 100 > sence && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 > sence)
              {
@@ -273,6 +282,15 @@ namespace eureka_blocks_car {
         break;
 
         case whiteblack.白:
+      if (sence == sence_select.高感度) {
+      sence=10    
+      }
+      if (sence == sence_select.普通) {
+      sence=20    
+      }
+      if (sence == sence_select.低感度) {
+      sence=30    
+      }
             if (
             (pins.analogReadPin(AnalogPin.P1) / 1023) * 100 < sence && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 < sence)
              {
