@@ -29,6 +29,10 @@ enum lotation{
     右,
 }
 
+enum kyori{
+    短い,
+    長い,
+}
 let con_le = 0;
 let con_op = 0;
 
@@ -308,9 +312,9 @@ namespace eureka_blocks_car {
     return Math.round(Math.idiv(d, 58) * 1.5) ;
   }
 
-  //% color="#009A00" weight=20 block="きょりが |%limit| cmより小さく" group="4　センサー"
+  //% color="#009A00" weight=20 block="きょりが |%limit| cmより |%nagasa| " group="4　センサー"
   //% limit.min=0 limit.max=50
-  export function sonar_ping_3(limit: number): boolean {
+  export function sonar_ping_3(limit: number ,nagasa:kyori): boolean {
     // send
     basic.pause(20);
     pins.setPull(DigitalPin.P16, PinPullMode.PullNone);
@@ -321,10 +325,21 @@ namespace eureka_blocks_car {
     pins.digitalWritePin(DigitalPin.P8, 0);
     // read
     const d = pins.pulseIn(DigitalPin.P16, PulseValue.High, 500 * 58);
-    if (Math.idiv(d, 58) * 1.5 < limit) {
-      return true;
-    } else {
-      return false;
+    switch(nagasa){
+        case kyori.短い:
+        if (Math.idiv(d, 58) * 1.5 < limit) {
+        return true;
+        } else {
+        return false;
+        }
+        break;
+        case kyori.長い:
+        if (Math.idiv(d, 58) * 1.5 < limit) {
+        return false;
+        } else {
+        return true;
+        }
+        break;        
     }
   }
 
