@@ -237,7 +237,7 @@ namespace eureka_blocks_car {
     switch(wb){
         case whiteblack.黒:
              if (
-            (pins.analogReadPin(AnalogPin.P1) / 1023) * 100 > 20 && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 > 20)
+            (pins.analogReadPin(AnalogPin.P1) / 1023) * 100 < 20 && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 < 20)
              {
             return true;
             } else {
@@ -248,7 +248,7 @@ namespace eureka_blocks_car {
         case whiteblack.白:
     
             if (
-            (pins.analogReadPin(AnalogPin.P1) / 1023) * 100 < 20 && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 < 20)
+            (pins.analogReadPin(AnalogPin.P1) / 1023) * 100 > 20 && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 > 20)
              {
             return true;
             } else {
