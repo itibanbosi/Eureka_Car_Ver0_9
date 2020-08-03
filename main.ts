@@ -249,7 +249,7 @@ namespace eureka_blocks_car {
         break;
     }
   }
-  //% color="#6041f1"  weight=25 block="左右とも |%wb| 線をふんでいる時　しきい値 |%sence|" group="4　センサー"
+  //% color="#6041f1"  weight=25 block="左右とも |%wb| をふんでいる時　しきい値 |%sence|" group="4　センサー"
 //% sence.min=10 sence.max=40
   export function photo_LR_out(wb: whiteblack , sence : sence_select): boolean {
       if (sence == sence_select.高感度) {
