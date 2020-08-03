@@ -31,7 +31,6 @@ enum lotation{
 
 let con_le = 0;
 let con_op = 0;
-let secnce1=20;
 
 
 //% color="#3943c6" block="ユーレカ自動車" icon="\uf1b9"
@@ -231,13 +230,25 @@ namespace eureka_blocks_car {
         break;
     }
   }
-  //% color="#6041f1"  weight=25 block="左右とも |%wb| をふんでいる時" group="4　センサー"
-//% sence.min=10 sence.max=40
-  export function photo_LR_out(wb: whiteblack): boolean {
+  //% color="#6041f1"  weight=25 block="左右とも |%wb| をふんでいる時 しきい値 |%sikii| " group="4　センサー"
+  export function photo_LR_out(wb: whiteblack,sikii:sence_select): boolean {
+　  if (sikii==sence_select.低感度)
+    {
+    sikii=30;    
+    }
+　  if (sikii==sence_select.普通)
+    {
+    sikii=20;    
+    }
+　  if (sikii==sence_select.高感度)
+    {
+    sikii=10;    
+    }
+
     switch(wb){
         case whiteblack.黒:
              if (
-            (pins.analogReadPin(AnalogPin.P1) / 1023) * 100 < 20 && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 < 20)
+            (pins.analogReadPin(AnalogPin.P1) / 1023) * 100 < sikii && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 < sikii)
              {
             return true;
             } else {
@@ -248,7 +259,7 @@ namespace eureka_blocks_car {
         case whiteblack.白:
     
             if (
-            (pins.analogReadPin(AnalogPin.P1) / 1023) * 100 > 20 && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 > 20)
+            (pins.analogReadPin(AnalogPin.P1) / 1023) * 100 > sikii && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 > sikii)
              {
             return true;
             } else {
