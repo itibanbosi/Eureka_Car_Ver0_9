@@ -103,7 +103,7 @@ namespace eureka_blocks_car {
     }
   }    
   
-  */
+
   
   //% color="#3943c6" weight=63blockId=servos_lotation
   //% block="回転 |%lot_houkou| " group="3　基本の動き"
@@ -117,6 +117,25 @@ namespace eureka_blocks_car {
       pins.servoWritePin(AnalogPin.P13, 90 + (90 * (con_op + 100)) / 100);
     }
   }
+
+  */
+
+  //% color="#3943c6" weight=63blockId=servos_lotation
+  //% block="回転 |%lot_houkou| " group="3　基本の動き"
+  export function car_lotation(lot_houkou:lotation): void {
+    switch(lot_houkou){
+        case lotation.ﾋﾀﾞﾘ:
+      pins.servoWritePin(AnalogPin.P14,0 );
+      pins.servoWritePin(AnalogPin.P13, 0);
+        case lotation.ﾐｷﾞ:
+      pins.servoWritePin(AnalogPin.P14,180 );
+      pins.servoWritePin(AnalogPin.P13, 180);
+    }
+  }
+
+
+
+
 
   //% color="#3943c6" weight=59　blockId=servo_pro_bal
   //% block="前進方向オリジナル 左へ |%set_lr| 右へ" group="3　基本の動き"
