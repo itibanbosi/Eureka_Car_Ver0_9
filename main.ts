@@ -57,7 +57,7 @@ namespace eureka_blocks_car {
     con_op = op;
   }
 
-/*
+
 
 
   //% color="#3943c6" weight=71　blockId=servos_direction
@@ -73,6 +73,7 @@ namespace eureka_blocks_car {
             pins.servoWritePin(AnalogPin.P14, 90 - (90 * (con_op + 100)) / 100);
             pins.servoWritePin(AnalogPin.P13, 90 + (90 * (con_op + 100)) / 100 + con_le);
             }        
+        break;
         case direction.後:
             if (con_le >= 0) {
             pins.servoWritePin( AnalogPin.P14,90 + (90 * (con_op + 100)) / 100 - con_le );
@@ -82,28 +83,35 @@ namespace eureka_blocks_car {
             pins.servoWritePin(AnalogPin.P14, 90 + (90 * (con_op + 100)) / 100);
             pins.servoWritePin(AnalogPin.P13, 90 - (90 * (con_op + 100)) / 100 - con_le );
             }
+        break;            
         case direction.左:
             pins.servoWritePin(AnalogPin.P14,90 - (90 * (con_op + 100)) / 100 );
             pins.servoWritePin(AnalogPin.P13, 90 );
+        break;
         case direction.右:
             pins.servoWritePin(AnalogPin.P14,90 );
             pins.servoWritePin(AnalogPin.P13, 90 + (90 * (con_op + 100)) / 100 );
+        break;
         case direction.左前:
             pins.servoWritePin(AnalogPin.P14,60 );
             pins.servoWritePin(AnalogPin.P13, 100);
+        break;
         case direction.右前:
             pins.servoWritePin(AnalogPin.P14,80);
             pins.servoWritePin(AnalogPin.P13, 120);
+        break;
         case direction.停まる:
             pins.servoWritePin(AnalogPin.P13, 90);
             pins.servoWritePin(AnalogPin.P14, 90);
+        break;
         case direction.ニュートラル:
             pins.digitalWritePin(DigitalPin.P13, 0);
             pins.digitalWritePin(DigitalPin.P14, 0);
+        break;
     }
   }    
   
-*/
+
   
   //% color="#3943c6" weight=63blockId=servos_lotation
   //% block="回転 |%lot_houkou| " group="3　基本の動き"
