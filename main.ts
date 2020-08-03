@@ -26,8 +26,8 @@ enum direction{
 }
 
 enum lotation{
-    左,
-    右,
+    ﾋﾀﾞﾘ,
+    ﾐｷﾞ,
 }
 
 let con_le = 0;
@@ -103,10 +103,10 @@ namespace eureka_blocks_car {
   //% block="回転 |%lot_houkou| " group="3　基本の動き"
   export function car_lotation(lot_houkou:lotation): void {
     switch(lot_houkou){
-        case lotation.左:
+        case lotation.ﾋﾀﾞﾘ:
       pins.servoWritePin(AnalogPin.P14,90 - (90 * (con_op + 100)) / 100 );
       pins.servoWritePin(AnalogPin.P13, 90 - (90 * (con_op + 100)) / 100);
-        case lotation.右:
+        case lotation.ﾐｷﾞ:
       pins.servoWritePin(AnalogPin.P14,90 + (90 * (con_op + 100)) / 100 );
       pins.servoWritePin(AnalogPin.P13, 90 + (90 * (con_op + 100)) / 100);
     }
@@ -125,9 +125,9 @@ namespace eureka_blocks_car {
   //% set_LR.min=-100 set_LR.max=100
   export function pro_LR(lot_houkou:lotation, set_LR: number): void {
     switch(lot_houkou){
-        case lotation.左:
+        case lotation.ﾋﾀﾞﾘ:
             pins.servoWritePin(AnalogPin.P13, 90 + (90 * set_LR) / 100);
-        case lotation.右:
+        case lotation.ﾐｷﾞ:
         pins.servoWritePin(AnalogPin.P14, 90 - (90 * set_LR) / 100);
     }
   }
