@@ -11,7 +11,6 @@ enum sence_select{
     普通,
     高感度,
     低感度,
-    超低感度,
 }
 
 enum direction{
@@ -149,8 +148,11 @@ namespace eureka_blocks_car {
     switch(lot_houkou){
         case lotation.左:
             pins.servoWritePin(AnalogPin.P13, 90 + (90 * set_LR) / 100);
+
+        break;
         case lotation.右:
         pins.servoWritePin(AnalogPin.P14, 90 - (90 * set_LR) / 100);
+        break;
     }
   }
 
@@ -196,10 +198,7 @@ namespace eureka_blocks_car {
       if (sence == sence_select.低感度) {
       sence=30    
       }
-      if (sence == sence_select.超低感度) {
-      sence=40    
-      }
-
+  
     switch(wb){
         case whiteblack.黒:
             if ((pins.analogReadPin(AnalogPin.P1) / 1023) * 100 > sence && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 < sence) {
@@ -207,12 +206,14 @@ namespace eureka_blocks_car {
             } else {
             return false;
             }
+        break;
         case whiteblack.白:
             if ((pins.analogReadPin(AnalogPin.P1) / 1023) * 100 < sence && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 > sence) {
             return true;
             } else {
             return false;
             }
+        break;
     }
   }
 
@@ -227,9 +228,6 @@ namespace eureka_blocks_car {
       if (sence == sence_select.低感度) {
       sence=30    
       }
-      if (sence == sence_select.超低感度) {
-      sence=40    
-      }
 
     switch(wb){
         case whiteblack.黒:
@@ -241,14 +239,14 @@ namespace eureka_blocks_car {
             } else {
             return false;
             }
-
+        break;
         case whiteblack.白:
             if ((pins.analogReadPin(AnalogPin.P1) / 1023) * 100 > sence &&　(pins.analogReadPin(AnalogPin.P2) / 1023) * 100 < sence) {
             return true;
             } else {
             return false;
-            }               
-    
+            }                   
+        break;
     }
   }
   //% color="#6041f1"  weight=25 block="左右とも |%wb| 線をふんでいる時　しきい値 |%sence|" group="4　センサー"
@@ -263,9 +261,6 @@ namespace eureka_blocks_car {
       if (sence == sence_select.低感度) {
       sence=30    
       }
-      if (sence == sence_select.超低感度) {
-      sence=40    
-      }
     switch(wb){
         case whiteblack.黒:
             if (
@@ -275,8 +270,8 @@ namespace eureka_blocks_car {
             } else {
             return false;
             }
-    }
-    switch(wb){
+        break;
+
         case whiteblack.白:
             if (
             (pins.analogReadPin(AnalogPin.P1) / 1023) * 100 < sence && (pins.analogReadPin(AnalogPin.P2) / 1023) * 100 < sence)
@@ -285,6 +280,7 @@ namespace eureka_blocks_car {
             } else {
             return false;
             }
+        break;
     }
 }
 
