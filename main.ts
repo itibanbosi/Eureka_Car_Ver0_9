@@ -33,6 +33,12 @@ enum kyori{
     短い,
     長い,
 }
+enum sonar_avg{
+    低速高精度,
+    中速中精度,
+    高速低精度,
+}
+
 let con_le = 0;
 let con_op = 0;
 
@@ -297,8 +303,21 @@ namespace eureka_blocks_car {
 }
 
 
-  //% color="#009A00" weight=22 blockId=sonar_ping_2 block="きょりｾﾝｻ" group="4　センサー"
-  export function ping() {
+  //% color="#009A00" weight=22 blockId=sonar_ping_2 block="きょりｾﾝｻ |%sonar_quality|" group="4　センサー"
+  export function ping(sonar_quality:sonar_avg) :number{
+        if (sonar_quality　==sonar_avg.低速高精度){
+            sonar_quality=20
+        }
+        if (sonar_quality==sonar_avg.中速中精度){
+            sonar_quality=5
+        }        
+        if (sonar_quality==sonar_avg.高速低精度){
+            sonar_quality=1
+        }
+    let  d1=0;
+    let  d2=0;
+
+    for ( let i=0 ; i<sonar_quality ; i++ ){
     // send
     basic.pause(20);
     pins.setPull(DigitalPin.P16, PinPullMode.PullNone);
@@ -308,13 +327,28 @@ namespace eureka_blocks_car {
     control.waitMicros(10);
     pins.digitalWritePin(DigitalPin.P8, 0);
     // read
-    const d = pins.pulseIn(DigitalPin.P16, PulseValue.High, 500 * 58);
-    return Math.round(Math.idiv(d, 58) * 1.5) ;
+    d1 = pins.pulseIn(DigitalPin.P16, PulseValue.High, 500 * 58);
+    d2=d2+d1;
+    }
+    return Math.round(Math.idiv(d2/sonar_quality, 58) * 1.5) ;
   }
 
-  //% color="#009A00" weight=20 block="きょりが |%limit| cmより |%nagasa| " group="4　センサー"
+  //% color="#009A00" weight=20 block="|%sonar_quality| 　きょりが |%limit| cmより |%nagasa| " group="4　センサー"
   //% limit.min=0 limit.max=50
-  export function sonar_ping_3(limit: number ,nagasa:kyori): boolean {
+  export function sonar_ping_3(sonar_quality:sonar_avg,limit: number ,nagasa:kyori): boolean {
+        if (sonar_quality　==sonar_avg.低速高精度){
+            sonar_quality=20
+        }
+        if (sonar_quality==sonar_avg.中速中精度){
+            sonar_quality=5
+        }        
+        if (sonar_quality==sonar_avg.高速低精度){
+            sonar_quality=1
+        }
+    let  d1=0;
+    let  d2=0;
+
+    for ( let i=0 ; i<sonar_quality ; i++ ){
     // send
     basic.pause(20);
     pins.setPull(DigitalPin.P16, PinPullMode.PullNone);
@@ -324,17 +358,19 @@ namespace eureka_blocks_car {
     control.waitMicros(10);
     pins.digitalWritePin(DigitalPin.P8, 0);
     // read
-    const d = pins.pulseIn(DigitalPin.P16, PulseValue.High, 500 * 58);
+    d1 = pins.pulseIn(DigitalPin.P16, PulseValue.High, 500 * 58);
+    d2= d1+d2;
+    }
     switch(nagasa){
         case kyori.短い:
-        if (Math.idiv(d, 58) * 1.5 < limit) {
+        if (Math.idiv(d2/sonar_quality, 58) * 1.5 < limit) {
         return true;
         } else {
         return false;
         }
         break;
         case kyori.長い:
-        if (Math.idiv(d, 58) * 1.5 < limit) {
+        if (Math.idiv(d2/sonar_quality, 58) * 1.5 < limit) {
         return false;
         } else {
         return true;
