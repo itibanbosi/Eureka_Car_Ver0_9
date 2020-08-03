@@ -57,10 +57,13 @@ namespace eureka_blocks_car {
     con_op = op;
   }
 
+/*
+
+
   //% color="#3943c6" weight=71　blockId=servos_direction
-  //% block="進行方向 |%houkou| " group="3　基本の動き"
-  export function car_derection(houkou:direction): void {
-    switch(houkou){
+  //% block="進行方向 |%sinkou_houkou| " group="3　基本の動き"
+  export function car_derection(sinkou_houkou:direction): void {
+    switch(sinkou_houkou){
         case direction.前:
             if (con_le >= 0) {
             pins.servoWritePin(AnalogPin.P14,90 - (90 * (con_op + 100)) / 100 + con_le);
@@ -99,12 +102,15 @@ namespace eureka_blocks_car {
             pins.digitalWritePin(DigitalPin.P14, 0);
     }
   }    
+  
+  */
+  
   //% color="#3943c6" weight=63blockId=servos_lotation
   //% block="回転 |%lot_houkou| " group="3　基本の動き"
   export function car_lotation(lot_houkou:lotation): void {
     switch(lot_houkou){
         case lotation.ﾋﾀﾞﾘ:
-      pins.servoWritePin(AnalogPin.P14,90 - (90 * (con_op + 100)) / 100 );
+      pins.servoWritePin(AnalogPin.P14,90 -(90 * (con_op + 100)) / 100 );
       pins.servoWritePin(AnalogPin.P13, 90 - (90 * (con_op + 100)) / 100);
         case lotation.ﾐｷﾞ:
       pins.servoWritePin(AnalogPin.P14,90 + (90 * (con_op + 100)) / 100 );
