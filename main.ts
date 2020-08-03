@@ -127,9 +127,11 @@ namespace eureka_blocks_car {
         case lotation.ﾋﾀﾞﾘ:
       pins.servoWritePin(AnalogPin.P14,0 );
       pins.servoWritePin(AnalogPin.P13, 0);
+    break;
         case lotation.ﾐｷﾞ:
       pins.servoWritePin(AnalogPin.P14,180 );
       pins.servoWritePin(AnalogPin.P13, 180);
+    break; 
     }
   }
 
