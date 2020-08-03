@@ -28,6 +28,10 @@ enum lotation{
     左,
     右,
 }
+enum car_LED_onoff{
+    有効,
+    無効,
+}
 
 enum kyori{
     短い,
@@ -379,16 +383,16 @@ namespace eureka_blocks_car {
     }
   }
 
-  //% color="#ff3d03" weight=12 blockId=auto_led_off block="ﾏｲｸﾛﾋﾞｯﾄのLEDを無効にする" group="5　ライト"
-  export function auto_led_off() {
-    led.enable(false);
+  //% color="#ff3d03" weight=12 blockId=auto_led_off block="ﾏｲｸﾛﾋﾞｯﾄのLEDを |%Matrix_LED| にする" group="5　ライト"
+  export function auto_led_off(Matrix_LED:car_LED_onoff) {
+    switch(Matrix_LED){
+        case car_LED_onoff.無効:
+        led.enable(false);
+        break;
+        case car_LED_onoff.有効:
+        led.enable(true);
+    }
   }
-
-  //% color="#ff3d03" weight=11 blockId=auto_led_on block="ﾏｲｸﾛﾋﾞｯﾄのLEDを有効にする" group="5　ライト"
-  export function auto_led_on() {
-    led.enable(true);
-  }
-
   //% color="#40a6ff" weight=10 blockId=auto_white_LED block="前＿白LED |%mode| " group="5　ライト"
   export function white_LED(mode: onoff) {
     if (mode == onoff.ON) {
