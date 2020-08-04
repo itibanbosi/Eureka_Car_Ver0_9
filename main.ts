@@ -47,7 +47,7 @@ let con_le = 0;
 let con_op = 0;
 
 
-//% color="#3943c6" block="ﾕｰﾚｶ自動車Ver0.9" icon="\uf1b9"
+//% color="#3943c6" block="ﾕｰﾚｶ･ｶｰVer0.91" icon="\uf1b9"
 
 namespace eureka_blocks_car {
   //% color="#ff3d03" weight=59 blockId=eurekacar_buz_set block="ﾕｰﾚｶ車で音をならす" group="1_初期設定"
